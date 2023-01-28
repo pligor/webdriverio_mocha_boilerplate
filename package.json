@@ -1,0 +1,23 @@
+{
+    "devDependencies": {
+        "@babel/cli": "^7.20.7",
+        "@babel/core": "^7.20.12",
+        "@babel/preset-env": "^7.20.2",
+        "@babel/register": "^7.18.9",
+        "@badisi/wdio-harness": "^2.0.0",
+        "@wdio/allure-reporter": "^8.2.0",
+        "@wdio/cli": "^8.2.3",
+        "@wdio/local-runner": "^8.2.3",
+        "@wdio/mocha-framework": "^8.2.3",
+        "chromedriver": "^109.0.0",
+        "csv-parser": "^3.0.0",
+        "wdio-chromedriver-service": "^8.0.1",
+        "wdio-wait-for": "^3.0.1"
+    },
+    "scripts": {
+        "doit": "wdio run wdio.conf.js"
+    },
+    "dependencies": {
+        "webdriverio": "^8.2.3"
+    }
+}

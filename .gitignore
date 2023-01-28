@@ -1,0 +1,36 @@
+# Generated initially from chatgpt
+
+# IntelliJ IDEA
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# logs
+logs/
+
+# Jasmine
+spec/support/
+
+# Node modules
+node_modules/
+
+# Coverage reports
+coverage/
+
+# Selenium standalone server
+selenium-server-standalone-*.jar
+
+# Log files
+*.log
+
+# Reports
+reports/
+
+# Allure
+allure-results/
+allure-report/
+
+# Allure command-line
+allure-commandline/
+
