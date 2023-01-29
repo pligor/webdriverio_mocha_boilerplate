@@ -15,7 +15,8 @@
         "wdio-wait-for": "^3.0.1"
     },
     "scripts": {
-        "doit": "wdio run wdio.conf.js"
+        "doit": "wdio run wdio.conf.js",
+        "saphetor": "wdio run ./test/test_web/test_saphetor/wdio.conf.saphetor.js"
     },
     "dependencies": {
         "webdriverio": "^8.2.3"
