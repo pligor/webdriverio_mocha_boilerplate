@@ -3,8 +3,10 @@
 // npx wdio run test/test_web/test_saphetor/wdio.conf.saphetor.js
 describe('Saphetor Test Challenge', () => {
     it.only('Verify that ...........................................', async () => {
-
         await browser.url(browser.options.baseUrl)
+
+        const accept_cookies_button = $('button#onetrust-accept-btn-handler')
+        await expect(accept_cookies_button).toBeDisplayedInViewport()
 
         // const user = (await users)['valid']
 

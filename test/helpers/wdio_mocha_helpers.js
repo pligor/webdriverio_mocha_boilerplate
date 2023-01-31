@@ -3,6 +3,9 @@ const assert = require('assert');
 const msecBETWEEN_KEYBOARD_KEYS = 50;
 const { sleep } = require('./node_helpers');
 
+const isClickable = async (element) => {
+    const is_disabled = await element
+}
 
 const send_keys = async (elem, characters, naturalSpeed = false, delayMsBetweenKeys = msecBETWEEN_KEYBOARD_KEYS) => {
     assert(characters.length > 0, "use non empty strings as input, otherwise use safeClearInputElement directly");
