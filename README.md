@@ -46,3 +46,8 @@ or
 `npm install`
 ### Update node modules
 `npm update`
+
+### How to get a new browser after execution of each "it" inside the "describe" ?
+By default you separate your test cases per file having a single "describe" inside, and each will have a new separate web browser
+If you really want to have a completely new session on each "it" or whenever you want then you need to call the "await browser.reloadSession()"
+However consider using the already existing same session to speed up the process
