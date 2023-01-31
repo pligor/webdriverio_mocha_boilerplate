@@ -1,5 +1,15 @@
 const util = require('util');
 const assert = require('assert');
+const fs = require('fs');
+
+function writeArrayToFile(fileName, array) {
+  fs.writeFile(fileName, array.join('\n'), function(err) {
+    if (err) throw err;
+    console.log(`The file ${fileName} has been saved!`);
+  });
+}
+
+const getMethods = (obj) => Object.getOwnPropertyNames(obj).filter(item => typeof obj[item] === 'function')
 
 const _range = (start, stop, step) => Array.from({ length: ((stop-1) - start) / step + 1}, (_, i) => start + (i * step));
 
@@ -28,4 +38,6 @@ module.exports = {
         await sleep(msec)
     },
     range,
+    writeArrayToFile,
+    getMethods,
 }

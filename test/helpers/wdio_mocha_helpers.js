@@ -1,10 +1,40 @@
+// import { browser, $, $$, expect } from '@wdio/globals';
 const os = require('os');
 const assert = require('assert');
 const msecBETWEEN_KEYBOARD_KEYS = 50;
-const { sleep } = require('./node_helpers');
+const { sleep, writeArrayToFile, getMethods } = require('./node_helpers');
 
-const isClickable = async (element) => {
-    const is_disabled = await element
+const getBoundingRect = async (element) => element.getElementRect(await element.elementId)
+
+const is_topmost_element = async (element) => {
+    const loc = await element.getLocation();
+    const size = await element.getSize();
+    // console.log(`info: `, loc, size)
+    // console.log('sel', await element.selector)
+
+    //if you think about it, because width and height cannot be decimals
+    //division by 2 when 0 or 1 using Math.floor is zero
+    //division by 2 when 0 or 1 using Math.ceil is 0 or 1 correspondingly, which both fall within the boundaries of the box
+    const halfWidth = Math.floor(size.width / 2)
+    const halfHeight = Math.floor(size.height / 2)
+    const obj = await browser.execute((xx, yy, half_width, half_height) => document.elementFromPoint(xx + half_width, yy + half_height),
+        loc.x, loc.y, halfWidth, halfHeight)
+    const vals = Object.values(obj)
+    assert(vals.length == 1, 'The returned objects is expected to be 1')
+    const elem_id_at_location = vals[0]
+    const elem_id = await element.elementId
+    return elem_id === elem_id_at_location
+}
+
+const is_clickable = async (element) => {
+    //only even if disabled is included as attribute it does not matter its value, the element will be disabled
+    const is_enabled = !(await element.getAttribute('disabled'))
+    const is_displayed = await element.isDisplayedInViewport()
+    const has_pointer_events = !(await element.getCSSProperty('pointer-events') === 'none')
+
+    const is_topmost = await is_topmost_element(element)
+
+    return is_enabled && is_displayed && has_pointer_events && is_topmost
 }
 
 const send_keys = async (elem, characters, naturalSpeed = false, delayMsBetweenKeys = msecBETWEEN_KEYBOARD_KEYS) => {
@@ -106,6 +136,7 @@ const Key = {
 module.exports = {
     safe_clear_input_element,
     send_keys,
+    is_clickable,
 }
 
 

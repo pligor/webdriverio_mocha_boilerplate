@@ -1,12 +1,18 @@
 
 // This will run all tests
+
+const { is_clickable } = require("../../../helpers/wdio_mocha_helpers")
+
 // npx wdio run test/test_web/test_saphetor/wdio.conf.saphetor.js
 describe('Saphetor Test Challenge', () => {
     it.only('Verify that ...........................................', async () => {
         await browser.url(browser.options.baseUrl)
 
         const accept_cookies_button = $('button#onetrust-accept-btn-handler')
-        await expect(accept_cookies_button).toBeDisplayedInViewport()
+        const isclickable = await is_clickable(accept_cookies_button)
+        await expect(isclickable).toBe(true)
+        await expect(accept_cookies_button).toBeClickable()
+        await accept_cookies_button.click()
 
         // const user = (await users)['valid']
 
