@@ -16,6 +16,7 @@ basically the "doit" is the name of the script as specified in scripts in packag
 # References / Cheatsheets
 https://www.npmjs.com/package/expect-webdriverio/v/1.2.0
 https://webdriver.io/docs/api/expect-webdriverio
+https://mochajs.org/
 
 # NodeJS prerequisites
 Make sure you have nvm in case you need to work with multiple Node versions:  
